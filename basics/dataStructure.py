@@ -232,7 +232,187 @@ class LinkedList:
         The following is a linked list:
         1->2->3->4->5->None
         """)
+class LinklistNode:
+    """This is a class for the node of the linked list data structure"""
+    def __init__(self,value):
+        self.value = value
+        self.next = None
+    
+    def linked_list_node_defination(self):
+        print("""
+        Linked List Node is a data structure that stores the value of the node and the reference to the next node.
+        """)
+    
+    def linked_list_node_insert(self,value):
+        """This function is used to insert the value in the linked list"""
+        self.next = LinklistNode(value)
+    
+    def linked_list_node_delete(self):
+        """This function is used to delete the node from the linked list"""
+        self.value = None
+        self.next = None
+    
+    def linked_list_node_search(self,value):
+        """This function is used to search the value in the linked list"""
+        if self.value == value:
+            return True
+        if self.next == None:
+            return False
+        return self.next.linked_list_node_search(value)
+    
+    def linked_list_node_traverse(self):
+        """This function is used to traverse the linked list"""
+        print("The value of the node is:",self.value)
+        if self.next != None:
+            self.next.linked_list_node_traverse()
+    
+    def linked_list_node_reverse(self):
+        """This function is used to reverse the linked list"""
+        prev = None
+        current = self
+        while current:
+            next_node = current.next
+            current.next = prev
+            prev = current
+            current = next_node
+        self = prev
+        return self
+    
+    def linked_list_node_circular(self):
+        """This function is used to implement a circular linked list"""
+        if self.next == None:
+            self.next = self
+        else:
+            self.next = self.next.linked_list_node_circular()
+            return self
+        return self
+    
+    def linked_list_node_circular_peek(self):
+        """This function is used to peek the value from the circular linked list"""
+        if self.next == None:
+            print("Queue is empty, No element to peek")
+            return
+        print("The front element of the queue is:",self.next.value)
+        return self.next.value
+    
+    def linked_list_node_circular_delete(self):
+        """This function is used to delete the node from the circular linked list"""
+        self.value = None
+        self.next = None
+        return self
+    
+    def linked_list_node_circular_search(self,value):
+            """This function is used to search the value in the circular linked list"""
+            if self.value == value:
+                return True
+            if self.next == None:
+                return False
+            return self.next.linked_list_node_circular_search(value)
+    
+    def linked_list_node_circular_reverse(self):
+            """This function is used to reverse the circular linked list"""
+            prev = None
+            current = self
+            while current:
+                next_node = current.next
+                current.next = prev
+                prev = current
+                current = next_node
+            self = prev
+            return self
+    
+class DoublyLinkedList:
+    """This is a class for the doubly linked list data structure"""
+    def __init__(self):
+        self.head = None
+        self.tail = None
+        self.length = 0
 
+    def doubly_linked_list_defination(self):
+        print("""
+        Doubly Linked List is a linear data structure that stores items in a non-contiguous manner.
+        Each element in a doubly linked list is called a node. Each node has three components:
+        1. Data: The value of the node.
+        2. Previous: The reference to the previous node in the doubly linked list.
+        3. Next: The reference to the next node in the doubly linked list.
+        The first node in the doubly linked list is called the head.
+        The last node in the doubly linked list has a reference to None.
+        Example:
+        The following is a doubly linked list:
+        1->2->3->4->5->None
+        """)
+    
+    def __init__(self):
+        self.head = None
+        self.tail = None
+        self.length = 0
+        
+    def doubly_linked_list_insert(self,value):
+        """This function is used to insert the value in the doubly linked list"""
+        new_node = LinklistNode(value)
+        if self.head == None:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            self.tail.next = new_node
+    
+    def doubly_linked_list_delete(self):
+        """This function is used to delete the node from the doubly linked list"""
+        if self.head == None:
+            print("The linked list is empty, No element to delete")
+            return
+        if self.head == self.tail:
+            self.head = None
+            self.tail = None
+        else:
+            self.head = self.head.next
+            
+    def doubly_linked_list_search(self,value):
+        """This function is used to search the value in the doubly linked list"""
+        if self.head == None:
+            print("The linked list is empty, No element to search")
+            return
+        current = self.head
+        while current:
+            if current.value == value:
+                return True
+            current = current.next
+        return False
+
+    def doubly_linked_list_traverse(self):
+        """This function is used to traverse the doubly linked list"""
+        if self.head == None:
+            print("The linked list is empty, No element to traverse")
+            return
+        current = self.head
+        while current:
+            print("The value of the node is:",current.value)
+            current = current.next
+    
+    def doubly_linked_list_reverse(self):
+        """This function is used to reverse the doubly linked list"""
+        prev = None
+        current = self.head
+        while current:
+            next_node = current.next
+            current.next = prev
+            prev = current
+            current = next_node
+        self.head = prev
+        return self.head
+    
+    def doubly_linked_list_circular_defination(self):
+        print("""
+        Circular Doubly Linked List is a doubly linked list in which all nodes are connected to form a circle.
+        The last node points to the first node.
+        The first node points to the last node.
+        Example:
+        The following is a circular doubly linked list:
+        1->2->3->4->5->1->2->3->4->5->1->2->3->4->5->None
+        """)
+        
+    
+    
 class BinaryTree:
     """This is a class for the binary tree data structure"""
     def __init__(self):
