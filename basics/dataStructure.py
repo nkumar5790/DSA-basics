@@ -152,6 +152,67 @@ class Queue:
         Queue is a linear data structure that stores items in a First In First Out (FIFO) manner.
         The name Queue is derived from the first person to arrive who is first served.
         """)
+        
+    def enqueue(self,value):
+        """This function is used to enqueue the value in the queue"""
+        self.queue.append(value)
+        self.length += 1
+        
+    def deque(self):
+        """This function is used to dequeue the value from the queue"""
+        if self.length == 0:
+            print("Queue is empty, No element to dequeue")
+            return
+        self.queue.pop(0)
+        self.length -= 1
+        
+    def queue_peek(self):
+        """This function is used to peek the value from the queue"""
+        if self.length == 0:
+            print("Queue is empty, No element to peek")
+            return
+        print("The front element of the queue is:",self.queue[0])
+        return self.queue[0]
+        
+    def queue_is_empty(self):
+        """This function is used to check if the queue is empty"""
+        if self.length == 0:
+            return True
+        return False
+    
+    def queue_is_full(self):
+        """This function is used to check if the queue is full"""
+        if self.length == len(self.queue):
+            return True
+        return False
+    
+    def queue_search(self,value):
+        """This function is used to search the value in the queue"""
+        for i in range(self.length):
+            if self.queue[i] == value:
+                return i
+        return -1
+    
+    def reverse_queue(self):
+        """This function is used to reverse the queue"""
+        self.queue = self.queue[::-1]
+        
+    def circular_queue(self):
+        """This function is used to implement a circular queue"""
+        if self.length == 0:
+            print("Queue is empty, No element to reverse")
+            return
+        self.queue = self.queue[1:] + self.queue[:1]
+        
+    def circular_queue_peek(self):
+        """This function is used to peek the value from the circular queue"""
+        if self.length == 0:
+            print("Queue is empty, No element to peek")
+            return
+        print("The front element of the queue is:",self.queue[0])
+        return self.queue[0]
+        
+    
 
 class LinkedList:
     """This is a class for the linked list data structure"""
