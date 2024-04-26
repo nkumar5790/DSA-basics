@@ -434,6 +434,89 @@ class BinaryTree:
         / \
         4   5
         """)
+class BTreeNode:
+    def __init__(self,value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+    def binary_tree_insert(self,value):
+        """This function is used to insert the value in the binary tree"""
+        if value < self.value:
+            if self.left == None:
+                self.left = BTreeNode(value)
+            else:
+                self.left.binary_tree_insert(value)
+                
+    def binary_tree_search(self,value):
+        """This function is used to search the value in the binary tree"""
+        if value == self.value:
+            return True
+        if value < self.value:
+            if self.left == None:
+                return False
+            return self.left.binary_tree_search(value)
+        if value > self.value:
+            if self.right == None:
+                return False
+            return self.right.binary_tree_search(value)
+    
+    def binary_tree_traverse(self):
+        """This function is used to traverse the binary tree"""
+        if self.left:
+            self.left.binary_tree_traverse()
+        print("The value of the node is:",self.value)
+        if self.right:
+            self.right.binary_tree_traverse()
+    
+    def binary_tree_delete(self,value):
+        """This function is used to delete the value from the binary tree"""
+        if value < self.value:
+            if self.left:
+                self.left = self.left.binary_tree_delete(value)
+        elif value > self.value:
+            if self.right:
+                self.right = self.right.binary_tree_delete(value)
+        else:
+            if self.left == None:
+                return self.right
+            elif self.right == None:
+                return self.left
+            min_value = self.right.binary_tree_min()
+            self.value = min_value
+            self.right = self.right.binary_tree_delete(min_value)
+        return self
+    
+    def binary_tree_min(self):
+        """This function is used to find the minimum value in the binary tree"""
+        if self.left == None:
+            return self.value
+        return self.left.binary_tree_min()
+    
+    def binary_tree_max(self):
+        """This function is used to find the maximum value in the binary tree"""
+        if self.right == None:
+            return self.value
+        return self.right.binary_tree_max()
+    
+    def binary_tree_height(self):
+        """This function is used to find the height of the binary tree"""
+        if self.left == None and self.right == None:
+            return 0
+        if self.left == None:
+            return 1 + self.right.binary_tree_height()
+        if self.right == None:
+            return 1 + self
+    
+    def binary_tree_depth(self):
+        """This function is used to find the depth of the binary tree"""
+        if self.left == None and self.right == None:
+            return 0
+        if self.left == None:
+            return 1 + self.right.binary_tree_depth()
+        if self.right == None:
+            return 1 + self.left.binary_tree_depth()
+    
         
 class Graph:
     """This is a class for the graph data structure"""
